@@ -23,6 +23,10 @@ package 'percona-server-server-5.7' do
   action :install
 end
 
+package 'mytop' do
+  action :install
+end
+
 service 'mysql' do
   action [ :start, :enable ]
 end

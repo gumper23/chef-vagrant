@@ -9,6 +9,7 @@ NODE_SCRIPT = <<EOF.freeze
   wget https://packages.chef.io/files/stable/chef-workstation/21.2.278/ubuntu/20.04/chef-workstation_21.2.278-1_amd64.deb
   dpkg -i chef-workstation_21.2.278-1_amd64.deb
   git clone https://github.com/gumper23/chef-vagrant.git
+  chown -R vagrant:vagrant chef-vagrant/
 EOF
 
 def set_hostname(server)
