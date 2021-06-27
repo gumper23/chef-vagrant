@@ -13,6 +13,6 @@ directory '/usr/local/go' do
 end
 
 archive_file "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz" do
-  destination '/usr/local/go'
+  destination '/usr/local'
   action :extract
 end
