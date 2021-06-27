@@ -12,14 +12,14 @@ go_vers = "go#{node['languages']['go']['version']}"
 directory '/usr/local/go' do
   recursive true
   action :delete
-  not_if gotarball.include? go_vers
+  not_if { gotarball.include? go_vers }
 end
 
 archive_file "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz" do
   destination '/usr/local'
   overwrite true
   action :extract
-  not_if gotarball.include? go_vers
+  not_if { gotarball.include? go_vers }
 end
 
 ruby_block 'Add go to PATH' do
