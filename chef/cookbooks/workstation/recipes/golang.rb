@@ -2,10 +2,10 @@
 # Cookbook:: workstation
 # Recipe:: golang
 #
-# Copyright:: 2021, The Authors, All Rights Reserved.
-gotarball = "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz"
-remote_file "#{gotarball}" do
-  source 'https://golang.org/dl/go1.16.5.linux-amd64.tar.gz'
+# Copyright:: 2021, Me, All Rights Reserved.
+gotarball = "go1.16.5.linux-amd64.tar.gz"
+remote_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
+  source "https://golang.org/dl/#{gotarball}"
 end
 
 govers = node[:languages] && node[:languages][:go] && node[:languages][:go][:version] || '0.0.0'
@@ -15,7 +15,7 @@ directory '/usr/local/go' do
   not_if { gotarball.include? govers }
 end
 
-archive_file "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz" do
+archive_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
   destination '/usr/local'
   overwrite true
   action :extract
