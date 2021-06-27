@@ -7,7 +7,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz" do
   source 'https://golang.org/dl/go1.16.5.linux-amd64.tar.gz'
 end
 
-go_vers = "go#{languages/go/version}"
+go_vers = "go#{node['languages']['go']['version']}"
 log "go version #{go_vers}"
 directory '/usr/local/go' do
   recursive true
