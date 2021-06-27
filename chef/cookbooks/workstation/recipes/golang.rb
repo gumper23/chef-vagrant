@@ -7,7 +7,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/go1.16.5.linux-amd64.tar.gz" do
   source 'https://golang.org/dl/go1.16.5.linux-amd64.tar.gz'
 end
 
-directory '/usr/local' do
+directory '/usr/local/go' do
   recursive true
   action :delete
 end
