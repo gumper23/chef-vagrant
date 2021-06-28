@@ -10,11 +10,11 @@ end
 
 # goversion = node['languages'] && node['languages']['go'] && node['languages']['go']['version'] || '0.0.0'
 gobin = '/usr/local/go/bin/go'
-goversion = %x[command -v #{gobin} && #{gobin} version | cut -d' ' -f 3].chomp
-goversion = '0.0.0' if goversion.empty? 
+goversion = File.executable?(gobin) ? `#{gobin} version | cut -d' ' -f3`.chomp : '0.0.0'
 
 log "gotarball = [#{gotarball}]"
 log "goversion = [#{goversion}]"
+
 directory '/usr/local/go' do
   recursive true
   action :delete
