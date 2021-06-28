@@ -8,12 +8,8 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
   source "https://golang.org/dl/#{gotarball}"
 end
 
-# goversion = node['languages'] && node['languages']['go'] && node['languages']['go']['version'] || '0.0.0'
 gobin = '/usr/local/go/bin/go'
 goversion = File.executable?(gobin) ? `#{gobin} version | cut -d' ' -f3`.chomp : '0.0.0'
-
-log "gotarball = [#{gotarball}]"
-log "goversion = [#{goversion}]"
 
 directory '/usr/local/go' do
   recursive true
