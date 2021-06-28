@@ -8,18 +8,20 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
   source "https://golang.org/dl/#{gotarball}"
 end
 
-govers = node['languages'] && node['languages']['go'] && node['languages']['go']['version'] || '0.0.0'
+goversion = node['languages'] && node['languages']['go'] && node['languages']['go']['version'] || '0.0.0'
+log "gotarball = [#{gotarball}]"
+log "goversion = [#{goversion}]"
 directory '/usr/local/go' do
   recursive true
   action :delete
-  not_if { gotarball.include? govers }
+  not_if { gotarball.include? goversion }
 end
 
 archive_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
   destination '/usr/local'
   overwrite true
   action :extract
-  not_if { gotarball.include? govers }
+  not_if { gotarball.include? goversion }
 end
 
 ruby_block 'Add go to PATH' do
