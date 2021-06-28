@@ -11,6 +11,7 @@ end
 # goversion = node['languages'] && node['languages']['go'] && node['languages']['go']['version'] || '0.0.0'
 gobin = '/usr/local/go/bin/go'
 goversion = %x[command -v #{gobin} && #{gobin} version | cut -d' ' -f 3]
+goversion = '0.0.0' if goversion.empty? 
 goversion = goversion.presence || '0.0.0'
 
 log "gotarball = [#{gotarball}]"
