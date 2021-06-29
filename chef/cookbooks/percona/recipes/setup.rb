@@ -7,8 +7,11 @@ remote_file "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['ls
   action :create
 end
 
+log "Using dpkg to install #{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
+  level :info
+end
+
 dpkg_package "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
-  log "Using dpkg to install #{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb"
   action :install
 end
 
