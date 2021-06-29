@@ -16,7 +16,9 @@ dpkg_package "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['l
 end
 
 execute 'enable percona repository' do
-  command '/usr/bin/percona-release setup ps80'
+  command '/usr/bin/percona-release setup ps80 && touch /etc/apt/sources.list.d/.percona-release-setup-ps80'
+  creates '/etc/apt/sources.list.d/.percona-release-setup-ps80'
+  action :run
 end
 
 apt_update 'update' do
