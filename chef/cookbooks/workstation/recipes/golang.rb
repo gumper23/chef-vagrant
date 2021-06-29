@@ -27,7 +27,7 @@ end
 ruby_block 'Add go to PATH' do
   block do
     file = Chef::Util::FileEdit.new('/etc/bash.bashrc')
-    file.insert_line_if_no_match('export PATH="\$\{PATH}\:\/usr\/local\/go\/bin"', 'export PATH="${PATH}:/usr/local/go/bin"')
+    file.insert_line_if_no_match('export PATH="\$\{PATH\}:\/usr\/local\/go\/bin"', 'export PATH="${PATH}:/usr/local/go/bin"')
     file.write_file
   end
 end
