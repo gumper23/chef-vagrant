@@ -9,7 +9,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{gotarball}" do
 end
 
 gobin = '/usr/local/go/bin/go'
-goversion = File.executable?(gobin) ? `#{gobin} version | cut -d' ' -f3`.chomp : '0.0.0'
+goversion = File.executable?(gobin) ? `#{gobin} version`.split(' ')[2] : '0.0.0'
 
 directory '/usr/local/go' do
   recursive true
