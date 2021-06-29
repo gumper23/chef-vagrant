@@ -2,13 +2,18 @@ package 'gnupg2' do
   action :install
 end
 
-remote_file "/tmp/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
+remote_file "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
   source "https://repo.percona.com/apt/percona-release_latest.#{node['lsb']['codename']}_all.deb"
   action :create
 end
 
-dpkg_package "/tmp/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
+dpkg_package "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
+  log "Using dpkg to install #{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb"
   action :install
+end
+
+execute 'enable percona repository' do
+  command '/usr/bin/percona-release setup ps80'
 end
 
 apt_update 'update' do
@@ -19,7 +24,7 @@ package 'percona-toolkit' do
   action :install
 end
 
-package 'percona-server-server-5.7' do
+package 'percona-server-server' do
   action :install
 end
 
