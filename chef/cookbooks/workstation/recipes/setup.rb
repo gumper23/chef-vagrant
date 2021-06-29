@@ -27,6 +27,10 @@ package 'zsh' do
   action :install
 end
 
+package 'mycli' do
+  action :install
+end
+
 include_recipe 'percona::default'
 
 log "lsb_release #{node['lsb']['codename']}"
