@@ -19,10 +19,11 @@ execute 'enable percona repository' do
   command '/usr/bin/percona-release setup ps80 && touch /etc/apt/sources.list.d/.percona-release-setup-ps80'
   creates '/etc/apt/sources.list.d/.percona-release-setup-ps80'
   action :run
+  notifies :update, 'apt-update[update]', :immediately
 end
 
 apt_update 'update' do
-  action :update
+  action :nothing
 end
 
 package 'percona-toolkit' do
