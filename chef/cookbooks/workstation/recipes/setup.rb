@@ -35,6 +35,10 @@ package 'silversearcher-ag' do
   action :install
 end
 
+package 'autojump' do
+  action :install
+end
+
 include_recipe 'percona::default'
 
 log "lsb_release #{node['lsb']['codename']}"
