@@ -31,6 +31,10 @@ package 'mycli' do
   action :install
 end
 
+package 'silversearcher-ag' do
+  action :install
+end
+
 include_recipe 'percona::default'
 
 log "lsb_release #{node['lsb']['codename']}"

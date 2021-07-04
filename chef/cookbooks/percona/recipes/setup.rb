@@ -2,10 +2,6 @@ package 'gnupg2' do
   action :install
 end
 
-package 'silversearcher-ag' do
-  action :install
-end
-
 remote_file "#{Chef::Config[:file_cache_path]}/percona-release_latest.#{node['lsb']['codename']}_all.deb" do
   source "https://repo.percona.com/apt/percona-release_latest.#{node['lsb']['codename']}_all.deb"
   action :create
